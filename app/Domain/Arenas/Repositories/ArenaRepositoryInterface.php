@@ -2,10 +2,13 @@
 
 namespace App\Domain\Arenas\Repositories;
 
+use App\Interfaces\Http\Requests\ArenaRequest;
+
 interface ArenaRepositoryInterface {
-    public function create($request)  {}
-    public function update($request) {}
-    public function index() {}
-    public function show($id) {}
-    public function delete($id) {}
+    public function create(ArenaRequest $request);
+    public function update(ArenaRequest $request , $id);
+    public function index() ;
+    public function show($id);
+    public function delete($id);
+    public function addSports($request , $id);
 }

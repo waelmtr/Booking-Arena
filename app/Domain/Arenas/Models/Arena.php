@@ -2,7 +2,10 @@
 
 namespace App\Domain\Arenas\Models;
 
+use App\Domain\Users\Models\User;
+use App\Domain\TimeSlots\Models\TimeSlot;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Arena extends Model
@@ -19,6 +22,10 @@ class Arena extends Model
     ];
 
     public function timeSlots():HasMany{
+        return $this->hasMany(TimeSlot::class);
+    }
 
+    public function owner():BelongsTo{
+        return $this->belongsTo(User::class , 'owner_id');
     }
 }
