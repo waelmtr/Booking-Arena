@@ -2,6 +2,7 @@
 
 namespace App\Domain\Arenas\Repositories;
 
+use App\Interfaces\Http\Requests\AddSportRequest;
 use App\Interfaces\Http\Requests\ArenaRequest;
 
 interface ArenaRepositoryInterface {
@@ -10,5 +11,5 @@ interface ArenaRepositoryInterface {
     public function index() ;
     public function show($id);
     public function delete($id);
-    public function addSports($request , $id);
+    public function addSports(AddSportRequest $request , $id);
 }

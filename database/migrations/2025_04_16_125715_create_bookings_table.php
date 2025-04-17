@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('time_slot_id');
             $table->foreignId('sport_id');
             $table->timestamp('expire_at')->nullable();
-            $table->enum('status' , StatusEnum::allStatus());
+            $table->enum('status' , StatusEnum::allStatus())->default(StatusEnum::Pending->value);
             $table->timestamps();
         });
     }

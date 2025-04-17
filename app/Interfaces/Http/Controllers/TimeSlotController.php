@@ -5,12 +5,19 @@ namespace App\Interfaces\Http\Controllers;
 use App\Domain\TimeSlots\Repositories\TimeSlotRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Http\Requests\TimeSlotRequest;
+use Illuminate\Http\Request;
 
 class TimeSlotController extends Controller {
     public function __construct(private TimeSlotRepositoryInterface $timeSlotRepository){}
 
     public function store(TimeSlotRequest $request){
         $result =  $this->timeSlotRepository->create($request);
+        return $this->success($result);
+    }
+
+    public function index(Request $request){
+        $request->validate(['date' => ['date']]);
+        $result =  $this->timeSlotRepository->index($request);
         return $this->success($result);
     }
 

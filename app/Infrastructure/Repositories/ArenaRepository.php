@@ -4,6 +4,7 @@ namespace App\Infrastructure\Repositories;
 
 use App\Domain\Arenas\Models\Arena;
 use App\Domain\Arenas\Repositories\ArenaRepositoryInterface;
+use App\Interfaces\Http\Requests\AddSportRequest;
 use App\Interfaces\Http\Requests\ArenaRequest; 
 
 class ArenaRepository extends BaseRepository implements ArenaRepositoryInterface {
@@ -28,7 +29,7 @@ class ArenaRepository extends BaseRepository implements ArenaRepositoryInterface
     }
 
     public function index(){
-        $arenas = $this->model->with('timeSlots')->get();
+        $arenas = $this->model->with('timeSlots' , 'sports')->get();
         return $arenas;
     }
 
@@ -38,7 +39,9 @@ class ArenaRepository extends BaseRepository implements ArenaRepositoryInterface
         return $arena;
     }
 
-    public function addSports($request , $id){
-
+    public function addSports(AddSportRequest $request , $id){
+        $arena = $this->getById($id);
+        $arena->sports()->sync([$request->sports]);
+        return $arena->load('sports');
     }
 }

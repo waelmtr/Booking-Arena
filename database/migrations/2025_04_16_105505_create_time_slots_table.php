@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('time_slots', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->timestamp('start_date')->nullable()->index();
+            $table->timestamp('end_date')->nullable()->index();
             $table->integer('duration');
             $table->double('price');
             $table->enum('status' , allowed: StatusEnum::allStatus())->default(StatusEnum::Available->value);
