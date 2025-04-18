@@ -109,4 +109,49 @@ This project is a **platform** that allows users to **browse, book, and manage**
 
 ## 📂 Folder Structure
 
-Here’s a quick rundown of important files and directories:
+app/
+├── Domain/
+│   ├── Arenas/
+│   │   ├── Models/
+│   │   │   └── Arena.php
+│   │   ├── Repositories/
+│   │   │   └── ArenaRepositoryInterface.php
+│   │   └── Services/
+│   │       └── ArenaService.php
+│   ├── TimeSlots/
+│   │   ├── Models/
+│   │   │   └── TimeSlot.php
+│   │   ├── Repositories/
+│   │   │   └── TimeSlotRepositoryInterface.php
+│   │   └── Services/
+│   │       └── TimeSlotService.php
+│   └── Bookings/
+│       ├── Models/
+│       │   └── Booking.php
+│       ├── Repositories/
+│       │   └── BookingRepositoryInterface.php
+│       ├── Services/
+│       │   └── BookingService.php
+│       └── Enums/
+│           └── BookingStatus.php
+├── Infrastructure/
+│   ├── Repositories/
+│   │   ├── ArenaRepository.php
+│   │   ├── TimeSlotRepository.php
+│   │   └── BookingRepository.php
+│   └── Events/
+│       └── BookingExpired.php
+└── Interfaces/
+    ├── Http/
+    │   ├── Controllers/
+    │   │   ├── ArenaController.php
+    │   │   ├── TimeSlotController.php
+    │   │   └── BookingController.php
+    │   ├── Requests/
+    │   │   ├── CreateArenaRequest.php
+    │   │   ├── CreateTimeSlotRequest.php
+    │   │   └── CreateBookingRequest.php
+    │   └── Resources/
+    │       ├── ArenaResource.php
+    │       ├── TimeSlotResource.php
+    │       └── BookingResource.php
