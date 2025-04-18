@@ -20,12 +20,12 @@ class ArenaRepository extends BaseRepository implements ArenaRepositoryInterface
     public function update(ArenaRequest $request , $id){
         $arena = $this->getById($id);
         $arena->update($request->validated());
-        return $arena->load('timeSlots');
+        return $arena->load('timeSlots' , 'sports');
     }
 
     public function show($id){
         $arena = $this->getById($id);
-        return $arena->load('timeSlots');
+        return $arena->load('timeSlots' , 'sports');
     }
 
     public function index(){
@@ -41,7 +41,7 @@ class ArenaRepository extends BaseRepository implements ArenaRepositoryInterface
 
     public function addSports(AddSportRequest $request , $id){
         $arena = $this->getById($id);
-        $arena->sports()->sync([$request->sports]);
+        $arena->sports()->sync($request->sports);
         return $arena->load('sports');
     }
 }

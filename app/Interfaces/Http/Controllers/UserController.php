@@ -6,6 +6,7 @@ use App\Domain\Users\Repositories\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Http\Requests\LoginRequest;
 use App\Interfaces\Http\Requests\RegisterRequest;
+use App\Interfaces\Http\Resources\UserResource;
 
 class UserController extends Controller {
     public function __construct(private UserRepositoryInterface $userRepository){}

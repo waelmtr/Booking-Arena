@@ -24,8 +24,10 @@ class TimeSlotRepository extends BaseRepository implements TimeSlotRepositoryInt
     public function index(Request $request){
         $timeSlots = $this->model
         ->when($request->date , function ($query) use ($request) {
-            $start = Carbon::parse($request->start_date)->startOfDay();
-            $end = Carbon::parse($request->start_date)->endOfDay();
+            $start = Carbon::parse($request->date)->startOfDay();
+            $end = Carbon::parse($request->date)->endOfDay();
+            error_log($start);
+            error_log($end);
             $query->whereBetween('start_date', [$start, $end]);
         })->get();
         return $timeSlots;  

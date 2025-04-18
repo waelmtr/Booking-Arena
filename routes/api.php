@@ -16,8 +16,8 @@ Route::middleware('transaction')->group(function () {
         Route::post('/logout' , [UserController::class , 'logout'])->middleware('auth:sanctum');
     });
 
-    Route::group(['prefix' => 'arenas' , 'middleware' => ['auth:sanctum' => 'arena-owner']] , function () {
-        Route::post('/add-sports' , [ArenaController::class , 'addSports']);
+    Route::group(['prefix' => 'arenas' , 'middleware' => ['auth:sanctum' , 'arena-owner']] , function () {
+        Route::post('/add-sports/{id}' , [ArenaController::class , 'addSports']);
     });
     Route::apiResource('arenas' , ArenaController::class)->middleware('auth:sanctum');
 
@@ -25,7 +25,7 @@ Route::middleware('transaction')->group(function () {
 
     Route::group(['prefix' => 'bookings' , 'middleware' => 'auth:sanctum'] , function () {
         Route::post('/book' , [BookingController::class , 'book']);
-        Route::post('/change-status' , [BookingController::class , 'changeStatus'])->middleware('arena-owner');
+        Route::post('/change-status/{id}' , [BookingController::class , 'changeStatus'])->middleware('arena-owner');
         Route::get('/' , [BookingController::class , 'allBookings'])->middleware('arena-owner');
     });
 });

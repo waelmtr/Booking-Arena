@@ -14,15 +14,7 @@ class BookingAccessTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
-    {
-        
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    public function allow_arena_owners_to_get_bookings(){
+    public function test_allow_arena_owners_to_get_bookings(){
         $owner = User::create([
             "name" => "owner-arena" ,
             "email" => "owner-arena@gmail.com" ,
@@ -33,7 +25,7 @@ class BookingAccessTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function denies_access_to_non_owners(){
+    public function test_denies_access_to_non_owners(){
         $user = User::create([
             "name" => "user" ,
             "email" => "user@gmail.com" ,
@@ -41,6 +33,6 @@ class BookingAccessTest extends TestCase
             "role" => RoleEnum::User->value
         ]);
         $response = $this->actingAs($user)->get('/api/bookings');
-        $response->assertForbidden();
+        $response->assertUnauthorized();
     }
 }

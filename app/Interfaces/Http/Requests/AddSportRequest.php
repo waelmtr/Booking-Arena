@@ -13,7 +13,7 @@ class AddSportRequest extends FormRequest {
     public function authorize(): bool
     {
         $arenas = auth()->user()->arenas()->select('id')->pluck('id')->toArray();
-        return in_array($this->input('arena_id') , $arenas);
+        return in_array($this->route('id') , $arenas);
     }
 
     /**
